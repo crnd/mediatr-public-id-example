@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Purkki.MediatorPublicIdExample.API.Filters;
 using Purkki.MediatorPublicIdExample.Application.Cars;
@@ -12,13 +11,6 @@ namespace Purkki.MediatorPublicIdExample.API
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
-
-		public IConfiguration Configuration { get; }
-
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddAutoMapper(typeof(CarDto).Assembly);
@@ -32,10 +24,7 @@ namespace Purkki.MediatorPublicIdExample.API
 		{
 			app.UseRouting();
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
-			});
+			app.UseEndpoints(endpoints => endpoints.MapControllers());
 		}
 	}
 }
